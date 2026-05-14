@@ -1,0 +1,33 @@
+# 数据文件（不公开）
+*.db
+*.json
+*.csv
+*.log
+data/
+!report/
+
+# 未脱敏版本
+*完整版*
+*_v1[0-9]*
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.hypothesis/
+.pytest_cache/
+
+# 环境
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# 爬虫相关
+scraper/
+cookie*
+*progress*
