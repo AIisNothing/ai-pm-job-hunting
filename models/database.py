@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 
-DEFAULT_DB_PATH = os.path.join("data", "boss_zhipin.db")
+DEFAULT_DB_PATH = os.path.join("data", "job_market.db")
 
 
 class Base(DeclarativeBase):

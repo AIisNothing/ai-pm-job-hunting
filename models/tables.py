@@ -37,7 +37,6 @@ class JobRecordDB(Base):
     __tablename__ = "job_records"
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_generate_uuid)
-    encrypt_job_id: Mapped[str] = mapped_column(String(100), nullable=False, default="", index=True)
     title: Mapped[str] = mapped_column(String(200), nullable=False)
     company: Mapped[str] = mapped_column(String(200), nullable=False)
     salary_min: Mapped[float | None] = mapped_column(Float, nullable=True)
@@ -58,22 +57,17 @@ class JobRecordDB(Base):
     )
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
     # 公司信息
-    brand_industry: Mapped[str] = mapped_column(String(100), nullable=False, default="")
-    brand_scale_name: Mapped[str] = mapped_column(String(50), nullable=False, default="")
-    brand_stage_name: Mapped[str] = mapped_column(String(50), nullable=False, default="")
-    brand_logo: Mapped[str] = mapped_column(String(500), nullable=False, default="")
+    industry: Mapped[str] = mapped_column(String(100), nullable=False, default="")
+    company_scale: Mapped[str] = mapped_column(String(50), nullable=False, default="")
+    company_stage: Mapped[str] = mapped_column(String(50), nullable=False, default="")
     # 福利与标签
     welfare_json: Mapped[str] = mapped_column(Text, nullable=False, default="[]")
     job_labels_json: Mapped[str] = mapped_column(Text, nullable=False, default="[]")
-    # 招聘者信息
-    boss_name: Mapped[str] = mapped_column(String(50), nullable=False, default="")
-    boss_title: Mapped[str] = mapped_column(String(100), nullable=False, default="")
-    boss_online: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    # 招聘者类型（猎头/HR/业务负责人，不含个人信息）
+    recruiter_type: Mapped[str] = mapped_column(String(50), nullable=False, default="")
     # 地理位置
     longitude: Mapped[float | None] = mapped_column(Float, nullable=True)
     latitude: Mapped[float | None] = mapped_column(Float, nullable=True)
-    # 原始数据备份
-    raw_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
 
     # 关系
     snapshot: Mapped["DataSnapshotDB"] = relationship("DataSnapshotDB", back_populates="job_records")
